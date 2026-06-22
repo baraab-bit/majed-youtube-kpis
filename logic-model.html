@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>النموذج المنطقي — برنامج الوعي التنموي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1F4E79;
+    --steel:#2E5A88;
+    --medblue:#4472C4;
+    --ltblue:#5B9BD5;
+    --teal:#3AAE9E;
+    --amber:#E8B53A;
+    --darkgreen:#1F7A5A;
+    --box:#F2F2F2;
+    --page:#EEF1F4;
+    --muted:#7d8794;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  html,body{
+    background:var(--page);
+    font-family:"IBM Plex Sans Arabic","IBM Plex Sans",sans-serif;
+    color:#222;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:28px;
+  }
+
+  /* ---------- SLIDE CARD ---------- */
+  .slide{
+    width:100%;
+    max-width:1280px;
+    aspect-ratio:16/9;
+    background:#fff;
+    border-radius:8px;
+    box-shadow:0 18px 50px rgba(31,78,121,.18), 0 2px 6px rgba(0,0,0,.06);
+    padding:32px 40px 22px;
+    display:flex;
+    flex-direction:column;
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* ---------- HEADER ---------- */
+  .header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:24px;
+  }
+  /* right side (RTL start) = title */
+  .title{
+    text-align:right;
+    color:var(--navy);
+    font-weight:700;
+    font-size:28px;
+    line-height:1.25;
+    letter-spacing:-.2px;
+    max-width:560px;
+  }
+  /* left cluster: qararat wordmark + program mark */
+  .brand-cluster{
+    display:flex;
+    align-items:flex-start;
+    gap:30px;
+  }
+  .qararat{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+  }
+  .skyline{
+    display:flex;
+    align-items:flex-end;
+    gap:3px;
+    height:14px;
+  }
+  .skyline span{
+    width:5px;
+    background:var(--navy);
+    border-radius:1px;
+  }
+  .skyline span:nth-child(1){height:8px;}
+  .skyline span:nth-child(2){height:14px;}
+  .skyline span:nth-child(3){height:10px;}
+  .qararat .word{
+    color:var(--navy);
+    font-weight:700;
+    font-size:20px;
+    letter-spacing:.5px;
+  }
+  .program-mark{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:6px 16px;
+    border:1.5px solid var(--navy);
+    border-radius:8px;
+    min-height:48px;
+  }
+  .program-mark .ar{
+    color:var(--navy);
+    font-weight:700;
+    font-size:19px;
+    line-height:1;
+  }
+  .program-mark .sub{
+    color:var(--muted);
+    font-size:9px;
+    letter-spacing:2px;
+    margin-top:4px;
+    font-family:"IBM Plex Sans",sans-serif;
+  }
+
+  /* two-tone divider */
+  .divider{
+    height:4px;
+    width:100%;
+    margin:14px 0 10px;
+    /* RTL: leftmost ~22% medium blue, rest navy. background goes left→right via fixed direction */
+    background:linear-gradient(to right, var(--medblue) 0 22%, var(--navy) 22% 100%);
+    border-radius:2px;
+  }
+
+  /* client logo placeholder on right under divider */
+  .client-row{
+    display:flex;
+    justify-content:flex-start; /* RTL start = right */
+    margin-bottom:14px;
+  }
+  .client-mark{
+    text-align:right;
+  }
+  .client-mark .ar{
+    color:var(--navy);
+    font-weight:700;
+    font-size:16px;
+    line-height:1;
+  }
+  .client-mark .sub{
+    color:var(--muted);
+    font-size:9px;
+    letter-spacing:2.5px;
+    margin-top:3px;
+    font-family:"IBM Plex Sans",sans-serif;
+  }
+
+  /* ---------- CHEVRON LADDER ---------- */
+  .ladder{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    flex:1;
+    min-height:0;
+  }
+  .col{
+    display:flex;
+    flex-direction:column;
+    min-width:0;
+  }
+
+  .chevron{
+    position:relative;
+    height:46px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    color:#fff;
+    font-weight:700;
+    font-size:18px;
+    margin-bottom:10px;
+    /* arrow pointing LEFT: point on left edge, notch on right edge */
+    clip-path:polygon(0 50%, 14px 0, 100% 0, calc(100% - 14px) 50%, 100% 100%, 14px 100%);
+    padding:0 10px;
+  }
+  .chevron .ic{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .chevron .ic svg{width:18px;height:18px;display:block;}
+
+  .c-natayij{background:var(--teal);  clip-path:polygon(0 50%, 14px 0, 100% 0, 100% 100%, 14px 100%);} /* leftmost: fully pointed left tip, flat right */
+  .c-makhrajat{background:var(--steel);}
+  .c-anshita{background:var(--medblue);}
+  .c-madkhalat{background:var(--ltblue);}
+
+  /* content box */
+  .cbox{
+    background:var(--box);
+    border-radius:6px;
+    padding:18px 16px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .cbox ul{list-style:none;}
+  .cbox li{
+    display:flex;
+    align-items:flex-start;
+    gap:8px;
+    text-align:right;
+    font-size:13.5px;
+    line-height:1.5;
+    color:#2c2c2c;
+    margin-bottom:11px;
+  }
+  .cbox li:last-child{margin-bottom:0;}
+  .dot{
+    flex:0 0 auto;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    margin-top:7px;
+    background:var(--navy);
+  }
+  .dot.amber{background:var(--amber);}
+  .dot.teal{background:var(--teal);}
+
+  /* ---------- NOTE BOX ---------- */
+  .note{
+    border:1.5px solid var(--navy);
+    background:#fff;
+    border-radius:8px;
+    padding:12px 22px;
+    margin-top:14px;
+    text-align:center;
+    color:var(--navy);
+    font-weight:700;
+    font-size:13px;
+    line-height:1.7;
+  }
+
+  /* ---------- LEGEND ---------- */
+  .legend{
+    display:flex;
+    justify-content:flex-start; /* RTL start = right */
+    gap:26px;
+    margin-top:10px;
+    font-size:12px;
+    color:#3a3a3a;
+  }
+  .legend .item{display:flex;align-items:center;gap:7px;}
+  .legend .ld{width:11px;height:11px;border-radius:50%;}
+
+  /* ---------- FOOTER ---------- */
+  .footer{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-top:auto;
+    padding-top:10px;
+  }
+  .pageno{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:3px;
+  }
+  .pageno .num{
+    color:var(--navy);
+    opacity:.55;
+    font-weight:700;
+    font-size:15px;
+  }
+  .pageno .dots{display:flex;gap:3px;}
+  .pageno .dots i{
+    width:3px;height:3px;border-radius:50%;
+    background:var(--navy);opacity:.4;
+  }
+  .internal{
+    color:var(--muted);
+    font-size:11px;
+    letter-spacing:.3px;
+  }
+
+  /* ---------- PRINT ---------- */
+  @media print{
+    @page{size:landscape;margin:0;}
+    html,body{background:#fff;padding:0;display:block;}
+    .slide{
+      max-width:none;width:100vw;height:100vh;aspect-ratio:auto;
+      border-radius:0;box-shadow:none;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="title">النموذج المنطقي برنامج الوعي التنموي</div>
+      <div class="brand-cluster">
+        <div class="program-mark">
+          <div class="ar">برنامج الوعي</div>
+        </div>
+        <div class="qararat">
+          <div class="skyline"><span></span><span></span><span></span></div>
+          <div class="word">قرارات</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="client-row">
+      <div class="client-mark">
+        <div class="ar">على كرسي ماجد</div>
+        <div class="sub">BY MAJID SOCIETY</div>
+      </div>
+    </div>
+
+    <!-- CHEVRON LADDER  (visual order L→R: النتائج, المخرجات, الأنشطة, المدخلات) -->
+    <div class="ladder" dir="ltr">
+
+      <!-- النتائج -->
+      <div class="col">
+        <div class="chevron c-natayij">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span>النتائج</span>
+        </div>
+        <div class="cbox" dir="rtl">
+          <ul>
+            <li><span class="dot amber"></span><span>نقل المعرفة والممارسات التنموية</span></li>
+            <li><span class="dot teal"></span><span>تعزيز مكانة الجمعية كمرجع في العمل التنموي</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- المخرجات -->
+      <div class="col">
+        <div class="chevron c-makhrajat">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17.5" cy="8.5" r="2.4"/><path d="M16 20a5 5 0 0 1 6-4.6"/></svg></span>
+          <span>المخرجات</span>
+        </div>
+        <div class="cbox" dir="rtl">
+          <ul>
+            <li><span class="dot"></span><span>عدد الحلقات/المقاطع المنشورة</span></li>
+            <li><span class="dot"></span><span>إجمالي ساعات المحتوى المُنتَج (جرعة العرض)</span></li>
+            <li><span class="dot"></span><span>عدد المستفيدين/المشاهدات (الوصول)</span></li>
+            <li><span class="dot"></span><span>إجمالي ساعات المشاهدة المُحقَّقة (جرعة الانتباه التنموي الفعلية)</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- الأنشطة -->
+      <div class="col">
+        <div class="chevron c-anshita">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 12 7 12 10 4 14 20 17 12 21 12"/></svg></span>
+          <span>الأنشطة</span>
+        </div>
+        <div class="cbox" dir="rtl">
+          <ul>
+            <li><span class="dot"></span><span>إعداد المحتوى التوعوي</span></li>
+            <li><span class="dot"></span><span>إنتاج وتسجيل الحلقات</span></li>
+            <li><span class="dot"></span><span>النشر على قناة اليوتيوب</span></li>
+            <li><span class="dot"></span><span>تنفيذ جلسات التوعية</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- المدخلات -->
+      <div class="col">
+        <div class="chevron c-madkhalat">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v11"/><polyline points="7 10 12 15 17 10"/><path d="M4 18h16"/></svg></span>
+          <span>المدخلات</span>
+        </div>
+        <div class="cbox" dir="rtl">
+          <ul>
+            <li><span class="dot"></span><span>فريق العمل (إعداد وإنتاج المحتوى)</span></li>
+            <li><span class="dot"></span><span>المحتوى التوعوي والتنموي المراد نشره</span></li>
+            <li><span class="dot"></span><span>قناة اليوتيوب (منصة النشر الرقمية)</span></li>
+            <li><span class="dot"></span><span>أدوات التسجيل والإنتاج</span></li>
+            <li><span class="dot"></span><span>مقر عقد اللقاءات/التسجيل واللوجستيات</span></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- NOTE -->
+    <div class="note">
+      تم الاعتماد في قياس الأثر التنموي على المحتوى المنشور عبر قناة اليوتيوب (بودكاست «على كرسي ماجد» والمحتوى التوعوي) لعام ٢٠٢٦، نظرًا لتوفّر بيانات YouTube Studio القابلة للقياس والتحليل، بما يتيح استخلاص نتائج واضحة وموثوقة تعكس الأثر الإيجابي للبرنامج.
+    </div>
+
+    <!-- LEGEND -->
+    <div class="legend">
+      <div class="item"><span class="ld" style="background:var(--amber)"></span><span>نتيجة قصيرة المدى</span></div>
+      <div class="item"><span class="ld" style="background:var(--teal)"></span><span>نتيجة متوسطة المدى</span></div>
+      <div class="item"><span class="ld" style="background:var(--darkgreen)"></span><span>نتيجة بعيدة المدى</span></div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="internal">Internal - داخلي</div>
+      <div class="pageno">
+        <div class="num">٣٦</div>
+        <div class="dots"><i></i><i></i><i></i></div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

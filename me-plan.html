@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خطة المتابعة والتقييم — برنامج الوعي التنموي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1F4E79;
+    --steel:#2E5A88;
+    --medblue:#4472C4;
+    --ltblue:#5B9BD5;
+    --teal:#3AAE9E;
+    --box:#F2F4F6;
+    --border:#D9DEE3;
+    --page:#EEF1F4;
+    --ink:#3A3A3A;
+    --muted:#6B7682;
+    --evenrow:#F7F9FB;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  html,body{
+    background:var(--page);
+    font-family:"IBM Plex Sans Arabic","IBM Plex Sans",sans-serif;
+    color:var(--ink);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:28px;
+  }
+
+  /* ---------- SLIDE CARD ---------- */
+  .slide{
+    width:100%;
+    max-width:1280px;
+    aspect-ratio:16/9;
+    background:#fff;
+    border-radius:8px;
+    box-shadow:0 18px 50px rgba(31,78,121,.18), 0 2px 6px rgba(0,0,0,.06);
+    padding:22px 36px 14px;
+    display:flex;
+    flex-direction:column;
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* ---------- HEADER ---------- */
+  .header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:24px;
+  }
+  .title{
+    text-align:right;
+    color:var(--navy);
+    font-weight:700;
+    font-size:28px;
+    line-height:1.25;
+    letter-spacing:-.2px;
+    max-width:680px;
+  }
+  .brand-cluster{
+    display:flex;
+    align-items:flex-start;
+    gap:30px;
+  }
+  .qararat{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+  }
+  .skyline{
+    display:flex;
+    align-items:flex-end;
+    gap:3px;
+    height:14px;
+  }
+  .skyline span{
+    width:5px;
+    background:var(--navy);
+    border-radius:1px;
+  }
+  .skyline span:nth-child(1){height:8px;}
+  .skyline span:nth-child(2){height:14px;}
+  .skyline span:nth-child(3){height:10px;}
+  .qararat .word{
+    color:var(--navy);
+    font-weight:700;
+    font-size:20px;
+    letter-spacing:.5px;
+  }
+  .program-mark{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:6px 16px;
+    border:1.5px solid var(--navy);
+    border-radius:8px;
+    min-height:48px;
+  }
+  .program-mark .ar{
+    color:var(--navy);
+    font-weight:700;
+    font-size:19px;
+    line-height:1;
+  }
+
+  /* two-tone divider */
+  .divider{
+    height:4px;
+    width:100%;
+    margin:13px 0 9px;
+    background:linear-gradient(to right, var(--medblue) 0 22%, var(--navy) 22% 100%);
+    border-radius:2px;
+  }
+
+  /* client mark under divider */
+  .client-row{
+    display:flex;
+    justify-content:flex-start;
+    margin-bottom:10px;
+  }
+  .client-mark{text-align:right;}
+  .client-mark .ar{
+    color:var(--navy);
+    font-weight:700;
+    font-size:16px;
+    line-height:1;
+  }
+  .client-mark .sub{
+    color:var(--muted);
+    font-size:9px;
+    letter-spacing:2.5px;
+    margin-top:3px;
+    font-family:"IBM Plex Sans",sans-serif;
+  }
+
+  /* ---------- INTRO BOX ---------- */
+  .intro{
+    background:var(--box);
+    border-radius:6px;
+    padding:8px 14px;
+    text-align:justify;
+    color:var(--ink);
+    font-size:11.4px;
+    line-height:1.5;
+    margin-bottom:7px;
+  }
+  .intro b{color:var(--navy);font-weight:600;}
+
+  /* ---------- TABLE ---------- */
+  .tbl-wrap{flex:1;min-height:0;display:flex;}
+  table{
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+  }
+  thead th{
+    background:var(--medblue);
+    color:#fff;
+    font-weight:700;
+    font-size:12px;
+    text-align:center;
+    padding:5px 8px;
+    border:1px solid var(--medblue);
+    line-height:1.25;
+  }
+  /* column widths (RTL: first col = rightmost) */
+  col.c-elem{width:21%;}
+  col.c-type{width:9%;}
+  col.c-ind{width:38%;}
+  col.c-src{width:32%;}
+
+  tbody td{
+    border:1px solid var(--border);
+    padding:2.5px 8px;
+    font-size:11px;
+    line-height:1.34;
+    vertical-align:middle;
+  }
+  /* element column — color-coded, white bold */
+  td.elem{
+    color:#fff;
+    font-weight:700;
+    text-align:right;
+    font-size:11px;
+  }
+  td.elem.t-madkhalat{background:var(--ltblue);}
+  td.elem.t-anshita{background:var(--medblue);}
+  td.elem.t-makhrajat{background:var(--steel);}
+  td.elem.t-natayij{background:var(--teal);}
+
+  /* type column — white, centered, dark */
+  td.type{
+    background:#fff;
+    text-align:center;
+    color:var(--ink);
+    font-weight:600;
+    font-size:10.8px;
+  }
+  /* indicator + source — white bg, ink, right aligned */
+  td.ind,td.src{
+    background:#fff;
+    text-align:right;
+    color:var(--ink);
+  }
+
+  /* even-row tint on white columns only */
+  tbody tr:nth-child(even) td.type,
+  tbody tr:nth-child(even) td.ind,
+  tbody tr:nth-child(even) td.src{
+    background:var(--evenrow);
+  }
+
+  /* anchor row — faint teal tint on white cells */
+  tbody tr.anchor td.type,
+  tbody tr.anchor td.ind,
+  tbody tr.anchor td.src{
+    background:#E8F6F3;
+  }
+  tbody tr.anchor td.ind{font-weight:600;}
+
+  /* conditional note + pill */
+  .note-cond{
+    color:var(--muted);
+    font-style:italic;
+    font-size:10px;
+  }
+  .pill{
+    display:inline-block;
+    background:#fbf2dc;
+    color:#9a6a00;
+    font-weight:600;
+    font-style:normal;
+    font-size:9.5px;
+    padding:1px 6px;
+    border-radius:8px;
+    margin:0 2px;
+    vertical-align:1px;
+    font-family:"IBM Plex Sans Arabic",sans-serif;
+  }
+  .tab{
+    font-family:"IBM Plex Sans",sans-serif;
+    font-weight:500;
+    direction:ltr;
+    unicode-bidi:isolate;
+  }
+
+  /* ---------- FOOTER ---------- */
+  .footer{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-top:8px;
+    padding-top:8px;
+  }
+  .pageno{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:3px;
+  }
+  .pageno .num{
+    color:var(--navy);
+    opacity:.55;
+    font-weight:700;
+    font-size:15px;
+  }
+  .pageno .dots{display:flex;gap:3px;}
+  .pageno .dots i{
+    width:3px;height:3px;border-radius:50%;
+    background:var(--navy);opacity:.4;
+  }
+  .internal{
+    color:var(--muted);
+    font-size:11px;
+    letter-spacing:.3px;
+  }
+
+  /* ---------- PRINT ---------- */
+  @media print{
+    @page{size:landscape;margin:0;}
+    html,body{background:#fff;padding:0;display:block;}
+    .slide{
+      max-width:none;width:100vw;height:100vh;aspect-ratio:auto;
+      border-radius:0;box-shadow:none;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="title">خطة المتابعة والتقييم — برنامج الوعي التنموي</div>
+      <div class="brand-cluster">
+        <div class="program-mark">
+          <div class="ar">برنامج الوعي</div>
+        </div>
+        <div class="qararat">
+          <div class="skyline"><span></span><span></span><span></span></div>
+          <div class="word">قرارات</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="client-row">
+      <div class="client-mark">
+        <div class="ar">على كرسي ماجد</div>
+        <div class="sub">BY MAJID SOCIETY</div>
+      </div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="intro">
+      تُبيّن خطة المتابعة والتقييم أدناه مؤشرات قياس كل عنصر من عناصر برنامج الوعي ومصدر جمع بياناته، بعد اعتماد قناة اليوتيوب (بودكاست «على كرسي ماجد» والمحتوى التوعوي) قناةً رئيسة للنشر وقياس الأثر لعام ٢٠٢٦. تُقرأ المؤشرات الرقمية مباشرةً من لقطات شاشة YouTube Studio — أسلوب خفيف ويدوي بلا واجهة برمجية أو استبيان — مع ذكر التبويب (Overview / Engagement / Audience) ليعرف الفريق أي لقطة يلتقط. وتبقى المؤشرات الإدارية (حجم الفريق، نسب الجاهزية، التكاليف، الدعوات المرجعية) معتمدةً على السجلات الإدارية. <b>المؤشر المحوري للبرنامج هو إجمالي ساعات المشاهدة المُحقَّقة</b>، بوصفه أصدق تعبير عن جرعة الانتباه التنموي الفعلية لقناة صغيرة مهتمة.
+    </div>
+
+    <!-- TABLE -->
+    <div class="tbl-wrap">
+      <table>
+        <colgroup>
+          <col class="c-elem"><col class="c-type"><col class="c-ind"><col class="c-src">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>عناصر البرنامج</th>
+            <th>النوع</th>
+            <th>المؤشر (لكل مبادرة)</th>
+            <th>أداة/مصدر جمع المعلومات</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- المدخلات -->
+          <tr>
+            <td class="elem t-madkhalat">فريق العمل (إعداد وإنتاج المحتوى)</td>
+            <td class="type">المدخلات</td>
+            <td class="ind"># أفراد فريق العمل</td>
+            <td class="src">السجلات الإدارية</td>
+          </tr>
+          <tr>
+            <td class="elem t-madkhalat">المحتوى التوعوي والتنموي المراد نشره</td>
+            <td class="type">المدخلات</td>
+            <td class="ind"># ساعات العمل الفعلية لإعداد المحتوى</td>
+            <td class="src">السجلات الإدارية</td>
+          </tr>
+          <tr>
+            <td class="elem t-madkhalat">قناة اليوتيوب (منصة النشر الرقمية)</td>
+            <td class="type">المدخلات</td>
+            <td class="ind">% جاهزية قناة اليوتيوب للنشر</td>
+            <td class="src">السجلات الإدارية</td>
+          </tr>
+          <tr>
+            <td class="elem t-madkhalat">أدوات التسجيل والإنتاج</td>
+            <td class="type">المدخلات</td>
+            <td class="ind">$ إجمالي تكلفة أدوات التسجيل والإنتاج اللازمة</td>
+            <td class="src">السجلات الإدارية</td>
+          </tr>
+          <tr>
+            <td class="elem t-madkhalat">مقر التسجيل/اللقاءات واللوجستيات</td>
+            <td class="type">المدخلات</td>
+            <td class="ind">% جاهزية مقر الجمعية للتسجيل وعقد اللقاءات</td>
+            <td class="src">السجلات الإدارية</td>
+          </tr>
+
+          <!-- الأنشطة -->
+          <tr>
+            <td class="elem t-anshita">إعداد المحتوى التوعوي</td>
+            <td class="type">الأنشطة</td>
+            <td class="ind"># الحلقات/المقاطع التي تم تجهيزها</td>
+            <td class="src">السجلات الإدارية</td>
+          </tr>
+          <tr>
+            <td class="elem t-anshita">إنتاج وتسجيل الحلقات</td>
+            <td class="type">الأنشطة</td>
+            <td class="ind"># الحلقات التي تم إنتاجها وتسجيلها</td>
+            <td class="src">السجلات الإدارية</td>
+          </tr>
+          <tr>
+            <td class="elem t-anshita">النشر على قناة اليوتيوب</td>
+            <td class="type">الأنشطة</td>
+            <td class="ind"># الحلقات/المقاطع التي تم نشرها</td>
+            <td class="src">السجلات الإدارية</td>
+          </tr>
+          <tr>
+            <td class="elem t-anshita">تنفيذ جلسات التوعية</td>
+            <td class="type">الأنشطة</td>
+            <td class="ind"># لقاءات «على كرسي ماجد» التي عُقدت</td>
+            <td class="src">السجلات الإدارية</td>
+          </tr>
+
+          <!-- المخرجات -->
+          <tr>
+            <td class="elem t-makhrajat">الحلقات/المقاطع المنشورة (جرعة المُخرَج)</td>
+            <td class="type">المخرجات</td>
+            <td class="ind"># الحلقات/المقاطع المنشورة</td>
+            <td class="src">حساب يدوي من لقطات YouTube Studio (تبويب <span class="tab">Content</span>)</td>
+          </tr>
+          <tr>
+            <td class="elem t-makhrajat">إجمالي ساعات المحتوى المُنتَج (جرعة العرض)</td>
+            <td class="type">المخرجات</td>
+            <td class="ind">إجمالي ساعات المحتوى المُنتَج</td>
+            <td class="src">حساب يدوي من لقطات YouTube Studio (جمع مدد الحلقات من تبويب <span class="tab">Content</span>)</td>
+          </tr>
+          <tr>
+            <td class="elem t-makhrajat">عدد المستفيدين/المشاهدات (الوصول)</td>
+            <td class="type">المخرجات</td>
+            <td class="ind"># عدد المشاهدات + المشاهدون الفريدون <span class="note-cond"><span class="pill">مشروط</span>المشاهدون الفريدون — قد يُحجب لقناة صغيرة، يُتحقق منه قبل الاعتماد</span></td>
+            <td class="src">المشاهدات: تبويب <span class="tab">Overview</span> · المشاهدون الفريدون: تبويب <span class="tab">Audience</span></td>
+          </tr>
+          <tr class="anchor">
+            <td class="elem t-makhrajat">إجمالي ساعات المشاهدة المُحقَّقة (المؤشر المحوري — جرعة الانتباه التنموي الفعلية)</td>
+            <td class="type">المخرجات</td>
+            <td class="ind">إجمالي ساعات المشاهدة المُحقَّقة</td>
+            <td class="src">تبويب <span class="tab">Overview</span> ← <span class="tab">"Watch time (hours)"</span></td>
+          </tr>
+          <tr>
+            <td class="elem t-makhrajat">عمق وجودة المشاهدة</td>
+            <td class="type">المخرجات</td>
+            <td class="ind">متوسط مدة المشاهدة (دقائق + % شوهدت) <span class="note-cond"><span class="pill">مشروط</span>يلزم تبويب <span class="tab">Engagement</span></span></td>
+            <td class="src">تبويب <span class="tab">Engagement</span> ← <span class="tab">"Average view duration"</span> + <span class="tab">"Average percentage viewed"</span></td>
+          </tr>
+
+          <!-- النتائج -->
+          <tr>
+            <td class="elem t-natayij">نقل المعرفة والممارسات التنموية</td>
+            <td class="type">النتائج</td>
+            <td class="ind">الترميز النوعي للتعليقات (شواهد تعلّم/نية تطبيق — بديل لا دليل) · ونسبة المشاهدين العائدين <span class="note-cond"><span class="pill">مشروط</span>يلزم تبويب <span class="tab">Audience</span>، قد يُحجب لقناة صغيرة</span></td>
+            <td class="src">ترميز نوعي يدوي للتعليقات · والمشاهدون العائدون: تبويب <span class="tab">Audience</span> ← <span class="tab">"Returning vs. new viewers"</span></td>
+          </tr>
+          <tr>
+            <td class="elem t-natayij">تعزيز مكانة الجمعية كمرجع في العمل التنموي</td>
+            <td class="type">النتائج</td>
+            <td class="ind">صافي نمو المشتركين · والإعجابات/التعليقات/المشاركات · و# الدعوات الموجهة للجمعية كجهة مرجعية</td>
+            <td class="src">المشتركون: تبويب <span class="tab">Overview</span> ← <span class="tab">"Subscribers"</span> · التفاعل: تحليلات الفيديو (<span class="tab">Per-video → Engagement/Overview</span>) · الدعوات: السجلات الإدارية</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="internal">Internal - داخلي</div>
+      <div class="pageno">
+        <div class="num">٣٧</div>
+        <div class="dots"><i></i><i></i><i></i></div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
